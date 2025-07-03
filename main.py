@@ -47,7 +47,7 @@ config_list = [
 async def handle_task(index):
     api_url = f"{TASK_API_URL}{index}"
     print(f"Fetching test case {index} from {api_url}...")
-    repo_dir = os.path.join(f"{WORK_DIR}/repo_{index}")  # Use unique repo directory per task
+    repo_dir = os.path.join(WORK_DIR, f"repo_{index}")  # Use unique repo directory per task
     start_dir = os.getcwd()  # Remember original working directory
 
     response = requests.get(api_url)
