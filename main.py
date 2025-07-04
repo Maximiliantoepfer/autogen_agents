@@ -86,15 +86,15 @@ async def handle_task(index):
         
     try:
         ic("Starting the code generation process...")
-        current_dir = f"{WORK_DIR}/repo_{index}"
+        current_dir = os.path.join(WORK_DIR, f"repo_{index}")
 
         ic("Starting chat with agents...")
         agents = AutogenAgents(llm_config=config_list[0], current_dir=current_dir, max_rounds=MAX_CHAT_ROUNDS)
-        chat = agents.assign_task(
+        chat_cost = agents.assign_task(
             task=prompt,
             max_rounds=MAX_CHAT_ROUNDS,
         )
-        ic(chat.cost)
+        ic(chat_cost)
         ic("Chat completed.")
         
         # git commit manuell durchführen, da die Agents auch bei direkter Anordung nie eigenständig korrekt commiten konnten.
@@ -117,11 +117,18 @@ async def handle_task(index):
                 log.write(f"\n--- TESTCASE {index} ---\n")
         
         try:
-            usage = agents.get_token_usage() 
-            print(usage)
-            total_tokens = usage['total_tokens']
+            usage = chat_cost.get('usage_including_cached_inference')
+            ic(usage)
+            # Modellnamen filtern (alles außer 'total_cost')
+            model_data = {k: v for k, v in usage.items() if k != 'total_cost'}
+
+            # Falls du nur den ersten (oder einzigen) Eintrag brauchst:
+            model_name, data = next(iter(model_data.items()))
+
+            total_tokens = data['total_tokens']
             total_cost = usage['total_cost']
             with open(LOG_FILE, "a", encoding="utf-8") as log:   
+                log.write(f"Model: {model_name}\n")
                 log.write(f"Total Tokens Used: {total_tokens}\n")
                 log.write(f"Total Cost: {total_cost:.4f}\n")
         except Exception as e:
@@ -189,7 +196,7 @@ def setup_repo(repo_url: str, repo_dir: str, commit_hash: str):
     
 
 async def main():  
-    for i in range(1, 2):
+    for i in range(1, 100, 5):
         await handle_task(i)
 
   

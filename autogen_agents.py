@@ -156,6 +156,9 @@ class AutogenAgents:
                 "You are a helpful AI-Assistant with User role. "
                 "Your task is to describe the coding problem and accept the results produced by the agents. "
                 "You do not intervene in the planning, coding, or testing steps."
+                "If you notice that no progress is being made, or that you cannot proceed, you must respond with the word 'TERMINATE'. "
+                "Do not continue the conversation endlessly.  Always ensure to stop the conversation if your task is completed or blocked."
+
             ),
             llm_config=self.llm_config,
             human_input_mode="NEVER",
@@ -185,6 +188,9 @@ class AutogenAgents:
                 "You are the manager of the Autogen Agents. "
                 "Your job is to coordinate the agents to solve the user task step by step. "
                 "Ensure that each agent performs its role correctly and does not interfere with others."
+                "If you notice that no progress is being made, or that you cannot proceed, you must respond with the word 'TERMINATE'. "
+                "Do not continue the conversation endlessly.  Always ensure to stop the conversation if your task is completed or blocked."
+
             ),
             max_consecutive_auto_reply=max_rounds,
             llm_config=self.llm_config,
@@ -192,30 +198,35 @@ class AutogenAgents:
             is_termination_msg=lambda msg: "TERMINATE" in msg["content"].upper(),
         )
         chat = self.user_proxy.initiate_chat(self.manager, message=task, max_turns=max_rounds)
-        self.last_chat = chat
-        return chat
+        self.last_chat_cost = chat.cost
+        return chat.cost
         
     def get_token_usage(self):
-        if self.last_chat:
-            try:
-                cost_info = self.last_chat.cost
-                usage = cost_info.get("usage_excluding_cached_inference") or cost_info.get("usage_including_cached_inference")
-                if not usage: 
-                    return None
-                # ggf. erster Model-Eintrag extrahieren
-                model_key = next( iter(usage) ) 
-                model_usage = usage[model_key]
- 
-                return {
-                    "model": model_key,
-                    "prompt_tokens": model_usage.get("prompt_tokens", 0),
-                    "completion_tokens": model_usage.get("completion_tokens", 0),
-                    "total_tokens": model_usage.get("total_tokens", 0),
-                    "total_cost": model_usage.get("cost", 0.0)
-                }
-            except Exception as e:
-                print(f"Failed to extract cost info: {e}")
-                return None
-        else:
-            print("No chat session available to extract token usage.")
-            return None
+        return self.last_chat_cost
+        # if self.last_chat:
+        #     try:
+        #         with open("info.log", "w", encoding="utf-8") as log:   
+        #             log.write(f"Info\n") 
+        #         cost_info = self.last_chat_cost
+        #         with open("info.log", "a", encoding="utf-8") as log:   
+        #             log.write(f"cost: {cost_info}\n") 
+        #         usage = cost_info.get("usage_including_cached_inference")
+        #         if usage: 
+        #             # ggf. erster Model-Eintrag extrahieren
+        #             model_key = next( iter(usage) ) 
+        #             model_usage = usage[model_key]
+        #             with open("info.log", "a", encoding="utf-8") as log:   
+        #                 log.write(f"usage: {usage}\n") 
+        #             return {
+        #                 "model": model_key,
+        #                 "prompt_tokens": model_usage.get("prompt_tokens", 0),
+        #                 "completion_tokens": model_usage.get("completion_tokens", 0),
+        #                 "total_tokens": model_usage.get("total_tokens", 0),
+        #                 "total_cost": model_usage.get("cost", 0.0)
+        #             }
+        #     except Exception as e:
+        #         print(f"Failed to extract cost info: {e}")
+        #         return None
+    
+        # print("No chat session available to extract token usage.")
+        # return None
