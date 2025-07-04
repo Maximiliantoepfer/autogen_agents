@@ -1,5 +1,6 @@
 config.py
-
+/repos
+repos/repo_1
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

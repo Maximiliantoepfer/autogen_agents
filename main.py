@@ -144,7 +144,10 @@ async def handle_task(index):
                 "FAIL_TO_PASS": fail_tests,
                 "PASS_TO_PASS": pass_tests
             }
-            res = requests.post("http://localhost:8082/test", json=test_payload)   
+            res = requests.post("http://localhost:8082/test", json=test_payload) 
+            ic(res)
+            ic(res.status_code)  
+            ic(res.text)
             res.raise_for_status()
             result_raw = res.json().get("harnessOutput", "{}")
             result_json = json.loads(result_raw)
