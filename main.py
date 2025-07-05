@@ -199,7 +199,7 @@ def setup_repo(repo_url: str, repo_dir: str, commit_hash: str):
     
 
 async def main():  
-    for i in range(1, 100, 5):
+    for i in range(1, 2, 5):
         await handle_task(i)
 
   

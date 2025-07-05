@@ -1,0 +1,7 @@
+--- Starting new run on DESKTOP-F5ROF36 at C:\Users\maxto\source\autogen_agents ---
+
+--- TESTCASE 1 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 1459
+Total Cost: 0.0042
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
