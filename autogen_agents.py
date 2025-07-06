@@ -198,11 +198,11 @@ class AutogenAgents:
             is_termination_msg=lambda msg: "TERMINATE" in msg["content"].upper(),
         )
         chat = self.user_proxy.initiate_chat(self.manager, message=task, max_turns=max_rounds)
-        self.last_chat_cost = chat.cost
+        
         return chat.cost
         
-    def get_token_usage(self):
-        return self.last_chat_cost
+    # def get_token_usage(self):
+    #     return self.last_chat_cost
         # if self.last_chat:
         #     try:
         #         with open("info.log", "w", encoding="utf-8") as log:   

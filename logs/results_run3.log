@@ -1,0 +1,8 @@
+--- Starting new run on DESKTOP-F5ROF36 at C:\Users\maxto\source\autogen_agents ---
+
+--- TESTCASE 30 ---
+Total Cost: 0.0061
+Total Tokens Used: 2441
+Model: gpt-4o-2024-08-06
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 0/0

@@ -1,0 +1,150 @@
+--- Starting new run on DESKTOP-F5ROF36 at C:\Users\maxto\source\autogen_agents ---
+
+--- TESTCASE 1 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 1689
+Total Cost: 0.0050
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 2 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 3 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 4 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 5 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 736
+Total Cost: 0.0019
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 6 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 1421
+Total Cost: 0.0036
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 7 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 98/98
+
+--- TESTCASE 8 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 1/1
+
+--- TESTCASE 9 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 3395
+Total Cost: 0.0085
+FAIL_TO_PASS passed: 0/2
+PASS_TO_PASS passed: 118/118
+
+--- TESTCASE 10 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 11 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 88/88
+
+--- TESTCASE 12 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 8/8
+
+--- TESTCASE 13 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 14 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 64/64
+
+--- TESTCASE 15 ---
+No Token Info: cannot access local variable 'chat_cost' where it is not associated with a value
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 16 ---
+No Token Info: cannot access local variable 'chat_cost' where it is not associated with a value
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 17 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 4464
+Total Cost: 0.0126
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 46/46
+
+--- TESTCASE 18 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/2
+PASS_TO_PASS passed: 174/174
+
+--- TESTCASE 19 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 2987
+Total Cost: 0.0075
+FAIL_TO_PASS passed: 0/2
+PASS_TO_PASS passed: 50/50
+
+--- TESTCASE 20 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 3075
+Total Cost: 0.0079
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 66/66
+
+--- TESTCASE 21 ---
+No Token Info: cannot access local variable 'chat_cost' where it is not associated with a value
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 22 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 5378
+Total Cost: 0.0172
+FAIL_TO_PASS passed: 0/2
+PASS_TO_PASS passed: 43/43
+
+--- TESTCASE 23 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 24 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/2
+PASS_TO_PASS passed: 44/44
+
+--- TESTCASE 25 ---
+Model: gpt-4o-2024-08-06
+Total Tokens Used: 775
+Total Cost: 0.0020
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 26 ---
+No Token Info: 
+Error calling SWE-Bench Test service: No data in harnessOutput – possible evaluation error or empty result
+
+--- TESTCASE 27 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 110/110
+
+--- TESTCASE 28 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/2
+PASS_TO_PASS passed: 15/15
+
+--- TESTCASE 29 ---
+No Token Info: 
+FAIL_TO_PASS passed: 0/1
+PASS_TO_PASS passed: 30/30

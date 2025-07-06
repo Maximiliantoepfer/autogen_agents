@@ -10,7 +10,7 @@ import requests
 import subprocess
 import contextlib
 from icecream import ic
-from config import OPENAI_API_KEY
+from config import OPENAI_API_KEY, OPENAI_API_BASE
 from autogen_agents import AutogenAgents
 
 # --- Maximale Runden für den Chat ---
@@ -32,13 +32,13 @@ config_list = [
     # {
     #     "model": "gpt-4o-mini",
     #     "api_key": OPENAI_API_KEY,
-    #     "base_url": "http://188.245.32.59:4000/v1",  # Local LLM server
+    #     "base_url": OPENAI_API_BASE, # "http://188.245.32.59:4000/v1",  # Local LLM server
     #     "max_tokens": 8096,
     # },
     {
         "model": "gpt-4o",
         "api_key": OPENAI_API_KEY,
-        "base_url": "http://188.245.32.59:4000/v1",  # Local LLM server
+        "base_url": OPENAI_API_BASE, # "http://188.245.32.59:4000/v1",  # Local LLM server
         "max_tokens": 8096,
     },
 ]
@@ -118,7 +118,13 @@ async def handle_task(index):
         
         try:
             usage = chat_cost.get('usage_including_cached_inference')
+            if not usage:
+                usage = chat_cost.get('usage_excluding_cached_inference')
             ic(usage)
+            total_cost = usage['total_cost']
+            with open(LOG_FILE, "a", encoding="utf-8") as log:   
+                log.write(f"Total Cost: {total_cost:.4f}\n")
+            
             # Modellnamen filtern (alles außer 'total_cost')
             model_data = {k: v for k, v in usage.items() if k != 'total_cost'}
 
@@ -128,9 +134,8 @@ async def handle_task(index):
             total_tokens = data['total_tokens']
             total_cost = usage['total_cost']
             with open(LOG_FILE, "a", encoding="utf-8") as log:   
-                log.write(f"Model: {model_name}\n")
                 log.write(f"Total Tokens Used: {total_tokens}\n")
-                log.write(f"Total Cost: {total_cost:.4f}\n")
+                log.write(f"Model: {model_name}\n")
         except Exception as e:
             with open(LOG_FILE, "a", encoding="utf-8") as log:   
                 log.write(f"No Token Info: {e}\n") 
@@ -199,7 +204,7 @@ def setup_repo(repo_url: str, repo_dir: str, commit_hash: str):
     
 
 async def main():  
-    for i in range(1, 2, 5):
+    for i in range(30, 31):
         await handle_task(i)
 
   
