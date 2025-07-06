@@ -102,8 +102,8 @@ async def handle_task(index):
             env = os.environ.copy()
             subprocess.run(["git", "add", "."], cwd=repo_dir, check=True, env=env)
             ic("Git add completed.")
-            subprocess.run(["git", "commit", "-m", "Solved Task by Autogen"], cwd=repo_dir, check=True, env=env)
-            ic("Git commit completed.")
+            # subprocess.run(["git", "commit", "-m", "Solved Task by Autogen"], cwd=repo_dir, check=True, env=env)
+            # ic("Git commit completed.")
         except subprocess.CalledProcessError as e:
             print(f"Git commit failed: {e}")
 
